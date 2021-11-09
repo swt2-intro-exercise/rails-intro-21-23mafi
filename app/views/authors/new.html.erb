@@ -1,13 +1,18 @@
 <h1>Neue Autoren</h1>
 <%= form_with scope: :author, url: authors_path, local: true do |form| %>
     <p>
-      <%= form.label :vorname%><br>
-      <%= form.text_field :vorname %>
+      <%= form.label :first_name%><br>
+      <%= form.text_field :first_name %>
     </p>
    
     <p>
-      <%= form.label :nachname %><br>
-      <%= form.text_field :nachname %>
+      <%= form.label :last_name %><br>
+      <%= form.text_field :last_name %>
+    </p>
+
+    <p>
+      <%= form.label :homepage %><br>
+      <%= form.text_field :homepage %>
     </p>
    
     <p>
