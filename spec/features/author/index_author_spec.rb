@@ -16,7 +16,8 @@ describe "New author page", type: :feature do
         expect(page).to have_text "http://wikipedia.de/Alan_Turing"
         expect(page).to have_link "Details page", href: author_path(@author)
         expect(page).to have_link "Update page", href: edit_author_path(@author)
-        expect(page).to have_link "Delete page", href: author_path(@author)/destroy
+        page.has_selector?('Destroy')
+        # expect(page).to have_link 'Destroy', :method => :delete, :href => author_path(@author)
     end
   end
   it "should have a link to create new authors" do
