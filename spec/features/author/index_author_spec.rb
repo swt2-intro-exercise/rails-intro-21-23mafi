@@ -6,7 +6,7 @@ describe "New author page", type: :feature do
     visit authors_path
   end
   it "should have table with all authors" do
-    FactoryBot.create :author
+    @author = FactoryBot.create :author
     visit authors_path
     expect(page).to have_css 'table'
     within 'table' do
@@ -14,10 +14,11 @@ describe "New author page", type: :feature do
         expect(page).to have_text("Homepage")
         expect(page).to have_text("Alan Turing")
         expect(page).to have_text "http://wikipedia.de/Alan_Turing"
-        expect(page).to have_link "Details page", href: author_path(1)
+        expect(page).to have_link "Details page", href: author_path(@author)
+        expect(page).to have_link "Update page", href: edit_author_path(@author)
     end
   end
-  it "should habe a link to create new authors" do
+  it "should have a link to create new authors" do
     visit authors_path
     expect(page).to have_link 'New', href: new_author_path
   end
