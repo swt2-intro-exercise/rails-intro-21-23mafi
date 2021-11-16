@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   #   end
 
   resources :authors
+  resources :papers
 
   # Example resource route with sub-resources:
   #   resources :products do
