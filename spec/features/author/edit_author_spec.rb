@@ -3,8 +3,8 @@ require 'rails_helper'
 describe "edit author page", type: :feature do
     it "should exist at 'edit_author_path' and render withour error" do
         # https://guides.rubyonrails.org/routing.html#path-and-url-helpers
-        FactoryBot.create :author
-        visit edit_author_path(1)
+        @author = FactoryBot.create :author
+        visit edit_author_path(@author)
     end
     it "should edit and submit an author's details" do
         @author = FactoryBot.create :author

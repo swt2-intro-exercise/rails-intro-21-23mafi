@@ -10,7 +10,7 @@ RSpec.describe Author, type: :model do
     expect(author.last_name).to eq("Turing")
     expect(author.homepage).to eq("http://wikipedia.org/Alan_Turing")
   end
-    it "should determine first_name and last_name from name" do
+  it "should determine first_name and last_name from name" do
     author = Author.new()
     author.first_name = "Alan"
     author.last_name = "Turing"
