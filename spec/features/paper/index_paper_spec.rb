@@ -1,25 +1,52 @@
 require 'rails_helper'
 
-RSpec.describe "papers/index", type: :view do
-  before(:each) do
-    assign(:papers, [
-      Paper.create!(
-        title: "Title",
-        venue: "Venue",
-        year: 2
-      ),
-      Paper.create!(
-        title: "Title",
-        venue: "Venue",
-        year: 2
-      )
-    ])
-  end
+RSpec.describe "papers/index", type: :feature do
+  it "visit a list of papers" do
+    Paper.create!(
+      title: "Title",
+      venue: "Venue",
+      year: 2
+    )
+    Paper.create!(
+      title: "Title",
+      venue: "Venue",
+      year: 2
+    )
+    Paper.create!(
+      title: "Title",
+      venue: "Venue",
+      year: 3
+    )
 
-  it "renders a list of papers" do
-    render
-    assert_select "tr>td", text: "Title".to_s, count: 2
-    assert_select "tr>td", text: "Venue".to_s, count: 2
-    assert_select "tr>td", text: 2.to_s, count: 2
+    visit papers_path
+    expect(page).to have_text("Title")
+    expect(page).to have_text("Venue")
+    expect(page).to have_text("Year")
+    expect(page).to have_text("2")
+    expect(page).to have_text("3")
+  end
+  it "renders just papers of a specific year" do
+    Paper.create!(
+      title: "Title",
+      venue: "Venue",
+      year: 2
+    )
+    Paper.create!(
+      title: "Title",
+      venue: "Venue",
+      year: 2
+    )
+    Paper.create!(
+      title: "Title",
+      venue: "Venue",
+      year: 3
+    )
+
+    visit papers_path(year: 2)
+    expect(page).to have_text("Title")
+    expect(page).to have_text("Venue")
+    expect(page).to have_text("Year")
+    expect(page).to have_text("2")
+    expect(page).to_not have_text("3")
   end
 end
