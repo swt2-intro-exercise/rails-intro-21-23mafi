@@ -17,7 +17,7 @@
 
 <p>
   <strong>Authors:</strong>
-  <% @paper.authors do |aut| %>
+  <% @paper.authors.each do |aut| %>
     <li><%= aut.name %></li>
   <% end %>
 </p>
